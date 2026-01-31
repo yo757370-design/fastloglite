@@ -1,0 +1,21 @@
+name: Build FastLogLite
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: g++ fastloglite.cpp -O2 -static -o fastloglite.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: FastLogLite
+          path: fastloglite.exe
